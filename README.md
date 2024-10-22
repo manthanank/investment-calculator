@@ -1,27 +1,55 @@
-# InvestmentCalculator
+# Investment Calculator
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8.
+This is a simple investment calculator that calculates the future value of an investment based on the initial investment, interest rate, and number of years.
 
-## Development server
+## Table of Contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Calculate the future value of an investment based on the initial investment, interest rate, and number of years.
 
-## Build
+## Technologies Used
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+This project was built using the following technologies:
 
-## Running unit tests
+- Angular
+- Tailwind CSS
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Prerequisites
 
-## Running end-to-end tests
+Before you begin, ensure you have met the following requirements:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- You have installed the latest version of Node.js.
+- You have a basic understanding of Angular.
 
-## Further help
+## Installation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+To install the project, simply clone the repository and run the following command:
+
+```bash
+npm install
+```
+
+## Usage
+
+To use the project, run the following command:
+
+```bash
+npm run start
+```
+
+## Contributing
+
+To contribute to the project, please fork the repository and submit a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

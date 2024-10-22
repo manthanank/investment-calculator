@@ -1,0 +1,29 @@
+<div class="container mx-auto mt-10">
+    <h1 class="text-2xl font-bold text-center mb-6">Investment Calculator</h1>
+
+    <form class="space-y-4" (ngSubmit)="calculateInvestment()">
+        <div>
+            <label class="block text-lg font-medium">Initial Investment (₹)</label>
+            <input type="number" [(ngModel)]="initialInvestment" class="input-field" required
+                name="initialInvestment" />
+        </div>
+
+        <div>
+            <label class="block text-lg font-medium">Annual Interest Rate (%)</label>
+            <input type="number" [(ngModel)]="annualRate" class="input-field" required name="annualRate" />
+        </div>
+
+        <div>
+            <label class="block text-lg font-medium">Years</label>
+            <input type="number" [(ngModel)]="years" class="input-field" required name="years" />
+        </div>
+
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Calculate</button>
+    </form>
+
+    @if (futureValue()) {
+    <div class="mt-6">
+        <h2 class="text-xl font-bold">Future Value: {{ futureValue() | currency: 'INR' }}</h2>
+    </div>
+    }
+</div>
