@@ -3,11 +3,10 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-investment-calculator',
-  standalone: true,
-  imports: [FormsModule, CurrencyPipe],
-  templateUrl: './investment-calculator.component.html',
-  styleUrl: './investment-calculator.component.scss',
+    selector: 'app-investment-calculator',
+    imports: [FormsModule, CurrencyPipe],
+    templateUrl: './investment-calculator.component.html',
+    styleUrl: './investment-calculator.component.scss'
 })
 export class InvestmentCalculatorComponent {
   initialInvestment = signal(0);

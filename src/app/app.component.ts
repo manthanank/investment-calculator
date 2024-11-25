@@ -4,11 +4,10 @@ import { InvestmentCalculatorComponent } from './investment-calculator/investmen
 import { Meta } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, InvestmentCalculatorComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+    selector: 'app-root',
+    imports: [RouterOutlet, InvestmentCalculatorComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'investment-calculator';
