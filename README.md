@@ -1,50 +1,92 @@
-# Investment Calculator
+# 🚀 Investment Calculator - Redesigned
 
-This is a simple investment calculator that calculates the future value of an investment based on the initial investment, interest rate, and number of years.
+A comprehensive, modern investment calculator built with Angular 19 and Tailwind CSS. Plan your financial future with advanced calculation features and beautiful visualizations.
 
-## Table of Contents
+## ✨ Features
 
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+### 🔢 Multiple Calculation Types
 
-## Features
+- **Simple Interest**: Basic interest calculation for straightforward investments
+- **Compound Interest**: Advanced compounding with customizable frequency
+- **SIP (Systematic Investment Plan)**: Regular monthly investment planning
 
-- Calculate the future value of an investment based on the initial investment, interest rate, and number of years.
+### 📊 Smart Analytics
 
-## Technologies Used
+- Real-time calculations as you type
+- Growth percentage visualization
+- Contribution vs Interest breakdown
+- Monthly effective rate display
+- Progress bar visualization
 
-This project was built using the following technologies:
+### 🎯 Investment Scenarios
 
-- Angular
-- Tailwind CSS
+- Pre-configured investment strategies:
+  - **Conservative**: 6% p.a. with lower risk
+  - **Moderate**: 8% p.a. with balanced approach
+  - **Aggressive**: 12% p.a. with higher returns
+- One-click scenario loading
 
-## Prerequisites
+### 📈 Detailed Breakdown
 
-Before you begin, ensure you have met the following requirements:
+- Quarterly investment progression
+- Month-by-month balance tracking
+- Interest accumulation over time
+- Total contributions vs earnings
 
-- You have installed the latest version of Node.js.
-- You have a basic understanding of Angular.
+### 🎨 Modern UI/UX
 
-## Installation
+- Beautiful gradient backgrounds
+- Responsive design for all devices
+- Smooth animations and transitions
+- Intuitive tab-based navigation
+- Professional color scheme
+- Mobile-first approach
 
-To install the project, simply clone the repository and run the following command:
+## 🛠️ Technology Stack
 
-```bash
-npm install
-```
+- **Frontend**: Angular 19 (latest)
+- **Styling**: Tailwind CSS 3.4
+- **Language**: TypeScript 5.5
+- **Build Tool**: Angular CLI 19
+- **State Management**: Angular Signals (reactive)
 
-## Usage
+## 🚀 Getting Started
 
-To use the project, run the following command:
+### Prerequisites
 
-```bash
-npm run start
-```
+- Node.js 18+
+- npm 9+
+
+### Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone <repository-url>
+   cd investment-calculator
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**
+
+   ```bash
+   npm start
+   ```
+
+4. **Open your browser**
+   Navigate to `http://localhost:4200`
+
+## 🔧 Available Scripts
+
+- `npm start` - Start development server
+- `npm run build` - Build for production
+- `npm test` - Run unit tests
+- `npm run watch` - Build in watch mode
 
 ## Contributing
 

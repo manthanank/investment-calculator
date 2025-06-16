@@ -1,29 +1,286 @@
-<div class="container mx-auto mt-10">
-    <h1 class="text-2xl font-bold text-center mb-6">Investment Calculator</h1>
+<!-- Main Container -->
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+  <div class="container mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 lg:py-8 max-w-7xl">
 
-    <form class="space-y-4" (ngSubmit)="calculateInvestment()">
-        <div>
-            <label class="block text-lg font-medium">Initial Investment (₹)</label>
-            <input type="number" [(ngModel)]="initialInvestment" class="input-field" required
-                name="initialInvestment" />
+    <!-- Header -->
+    <div class="text-center mb-8 sm:mb-10 lg:mb-12">
+      <h1
+        class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 mb-3 sm:mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent px-2">
+        Investment Calculator
+      </h1>
+      <p class="text-sm sm:text-lg lg:text-xl text-gray-600 max-w-xs sm:max-w-md lg:max-w-2xl mx-auto px-4">
+        Plan your financial future with our comprehensive investment calculator.
+        Explore different scenarios and see your money grow over time.
+      </p>
+    </div> <!-- Navigation Tabs -->
+    <div class="flex justify-center mb-6 sm:mb-8 px-2">
+      <div
+        class="bg-white rounded-xl shadow-lg p-1 sm:p-2 inline-flex w-full max-w-md sm:max-w-none sm:w-auto overflow-hidden">
+        <button (click)="setActiveTab('calculator')"
+          [ngClass]="activeTab() === 'calculator' ? 'bg-blue-500 text-white shadow-md' : 'text-gray-600 hover:text-blue-500'"
+          class="flex-1 sm:flex-none px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all duration-200 text-xs sm:text-sm">
+          Calculator
+        </button>
+        <button (click)="setActiveTab('scenarios')"
+          [ngClass]="activeTab() === 'scenarios' ? 'bg-blue-500 text-white shadow-md' : 'text-gray-600 hover:text-blue-500'"
+          class="flex-1 sm:flex-none px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all duration-200 text-xs sm:text-sm">
+          Scenarios
+        </button>
+        <button (click)="setActiveTab('breakdown')"
+          [ngClass]="activeTab() === 'breakdown' ? 'bg-blue-500 text-white shadow-md' : 'text-gray-600 hover:text-blue-500'"
+          class="flex-1 sm:flex-none px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all duration-200 text-xs sm:text-sm">
+          Breakdown
+        </button>
+      </div>
+    </div><!-- Calculator Tab -->
+    @if (activeTab() === 'calculator') {
+    <div class="grid xl:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+
+      <!-- Input Panel -->
+      <div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8">
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Investment Parameters</h2>
+
+        <!-- Calculation Type Selection -->
+        <div class="mb-4 sm:mb-6">
+          <label class="block text-sm font-medium text-gray-700 mb-3">Calculation Type</label>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <button (click)="setCalculationType('simple')"
+              [ngClass]="calculationType() === 'simple' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+              class="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors">
+              Simple Interest
+            </button>
+            <button (click)="setCalculationType('compound')"
+              [ngClass]="calculationType() === 'compound' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+              class="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors">
+              Compound Interest
+            </button>
+            <button (click)="setCalculationType('sip')"
+              [ngClass]="calculationType() === 'sip' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+              class="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors">
+              SIP
+            </button>
+          </div>
         </div>
 
-        <div>
-            <label class="block text-lg font-medium">Annual Interest Rate (%)</label>
-            <input type="number" [(ngModel)]="annualRate" class="input-field" required name="annualRate" />
+        <!-- Input Fields -->
+        <div class="space-y-4 sm:space-y-6">
+          <div class="input-group">
+            <label class="input-label">Initial Investment</label>            <div class="relative">
+              <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">₹</span>
+              <input type="number" [(ngModel)]="initialInvestment" name="initialInvestment" class="input-field !pl-6 pr-3 sm:pr-4"
+                placeholder="10,000">
+            </div>
+          </div>
+
+          @if (calculationType() !== 'simple') {
+          <div class="input-group">
+            <label class="input-label">Monthly Contribution</label>            <div class="relative">
+              <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">₹</span>
+              <input type="number" [(ngModel)]="monthlyContribution" name="monthlyContribution" class="input-field !pl-6 pr-3 sm:pr-4"
+                placeholder="1,000">
+            </div>
+          </div>
+          }
+
+          <div class="input-group">
+            <label class="input-label">Annual Interest Rate</label>
+            <div class="relative">
+              <input type="number" [(ngModel)]="annualRate" name="annualRate" class="input-field pr-8" step="0.1"
+                placeholder="8.0">
+              <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">%</span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Investment Period</label>
+            <div class="relative">
+              <input type="number" [(ngModel)]="years" name="years" class="input-field pr-16" placeholder="10">
+              <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">years</span>
+            </div>
+          </div>
+
+          @if (calculationType() === 'compound') {
+          <div class="input-group">
+            <label class="input-label">Compounding Frequency</label>
+            <select [(ngModel)]="compoundingFrequency" name="compoundingFrequency" class="input-field">
+              <option value="1">Annually</option>
+              <option value="2">Semi-annually</option>
+              <option value="4">Quarterly</option>
+              <option value="12">Monthly</option>
+              <option value="365">Daily</option>
+            </select>
+          </div>
+          }
+        </div>
+      </div>
+
+      <!-- Results Panel -->
+      <div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8">
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Investment Results</h2>
+
+        <!-- Main Result -->
+        <div
+          class="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
+          <div class="text-center">
+            <p class="text-sm font-medium text-green-700 mb-2">Future Value</p>
+            <p class="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-800 break-all">{{ result().futureValue |
+              currency: 'INR':'symbol':'1.0-0' }}</p>
+            <p class="text-xs sm:text-sm text-green-600 mt-2">
+              {{ getGrowthPercentage() | number:'1.1-1' }}% growth over {{ years() }} years
+            </p>
+          </div>
         </div>
 
-        <div>
-            <label class="block text-lg font-medium">Years</label>
-            <input type="number" [(ngModel)]="years" class="input-field" required name="years" />
+        <!-- Breakdown Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4">
+            <p class="text-xs sm:text-sm font-medium text-blue-700 mb-1">Total Contributions</p>
+            <p class="text-lg sm:text-xl font-bold text-blue-800 break-all">{{ result().totalContributions | currency:
+              'INR':'symbol':'1.0-0' }}</p>
+          </div>
+          <div class="bg-purple-50 border border-purple-200 rounded-lg p-3 sm:p-4">
+            <p class="text-xs sm:text-sm font-medium text-purple-700 mb-1">Interest Earned</p>
+            <p class="text-lg sm:text-xl font-bold text-purple-800 break-all">{{ result().totalInterest | currency:
+              'INR':'symbol':'1.0-0' }}</p>
+          </div>
         </div>
 
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Calculate</button>
-    </form>
+        <!-- Progress Visualization -->
+        <div class="mb-4 sm:mb-6">
+          <p class="text-sm font-medium text-gray-700 mb-3">Contribution vs Interest</p>
+          <div class="flex rounded-lg overflow-hidden h-3 bg-gray-200">
+            <div class="bg-blue-500" [style.width.%]="(result().totalContributions / result().futureValue) * 100">
+            </div>
+            <div class="bg-purple-500" [style.width.%]="(result().totalInterest / result().futureValue) * 100">
+            </div>
+          </div>
+          <div class="flex justify-between text-xs text-gray-600 mt-1">
+            <span>Contributions: {{ (result().totalContributions / result().futureValue) * 100 | number:'1.0-0'
+              }}%</span>
+            <span>Interest: {{ (result().totalInterest / result().futureValue) * 100 | number:'1.0-0' }}%</span>
+          </div>
+        </div>
 
-    @if (futureValue()) {
-    <div class="mt-6">
-        <h2 class="text-xl font-bold">Future Value: {{ futureValue() | currency: 'INR' }}</h2>
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-sm">
+          <div>
+            <p class="text-gray-600">Monthly Effective Rate</p>
+            <p class="font-semibold">{{ (annualRate() / 12) | number:'1.2-2' }}%</p>
+          </div>
+          <div>
+            <p class="text-gray-600">Total Months</p>
+            <p class="font-semibold">{{ years() * 12 }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    } <!-- Scenarios Tab -->
+    @if (activeTab() === 'scenarios') {
+    <div class="max-w-6xl mx-auto">
+      <div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8">
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Investment Scenarios</h2>
+        <p class="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">Compare different investment strategies and find the
+          one that suits your goals.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          @for (scenario of scenarios(); track scenario.name) {
+          <div class="border border-gray-200 rounded-xl p-4 sm:p-6 hover:shadow-lg transition-shadow cursor-pointer"
+            (click)="loadScenario(scenario)">
+            <div class="flex items-center justify-between mb-3 sm:mb-4">
+              <h3 class="text-base sm:text-lg font-semibold text-gray-800">{{ scenario.name }}</h3>
+              <span class="px-2 sm:px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs sm:text-sm font-medium">
+                {{ scenario.annualRate }}% p.a.
+              </span>
+            </div>
+
+            <div class="space-y-2 sm:space-y-3 text-xs sm:text-sm">
+              <div class="flex justify-between">
+                <span class="text-gray-600">Initial Investment:</span>
+                <span class="font-medium break-all text-right">{{ scenario.initialInvestment | currency:
+                  'INR':'symbol':'1.0-0' }}</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Monthly SIP:</span>
+                <span class="font-medium break-all text-right">{{ scenario.monthlyContribution | currency:
+                  'INR':'symbol':'1.0-0' }}</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Time Period:</span>
+                <span class="font-medium">{{ scenario.years }} years</span>
+              </div>
+            </div>
+
+            <button
+              class="w-full mt-3 sm:mt-4 bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors text-xs sm:text-sm">
+              Use This Scenario
+            </button>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+    } <!-- Breakdown Tab -->
+    @if (activeTab() === 'breakdown') {
+    <div class="max-w-7xl mx-auto">
+      <div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8">
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">Investment Breakdown</h2>
+
+        <!-- Mobile Cards View -->
+        <div class="block sm:hidden space-y-4">
+          @for (item of result().monthlyBreakdown; track item.month) {
+          <div class="border border-gray-200 rounded-lg p-4">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-sm font-semibold text-gray-700">Month {{ item.month }}</span>
+              <span class="text-lg font-bold text-gray-800">{{ item.balance | currency: 'INR':'symbol':'1.0-0' }}</span>
+            </div>
+            <div class="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <span class="text-gray-600">Contributions:</span>
+                <div class="font-medium">{{ item.totalContributions | currency: 'INR':'symbol':'1.0-0' }}</div>
+              </div>
+              <div>
+                <span class="text-gray-600">Interest:</span>
+                <div class="font-medium text-green-600">{{ item.interestEarned | currency: 'INR':'symbol':'1.0-0' }}
+                </div>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+
+        <!-- Desktop Table View -->
+        <div class="hidden sm:block overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="text-left py-3 px-2 sm:px-4 font-semibold text-gray-700 text-sm sm:text-base">Period (Months)
+                </th>
+                <th class="text-right py-3 px-2 sm:px-4 font-semibold text-gray-700 text-sm sm:text-base">Balance</th>
+                <th
+                  class="text-right py-3 px-2 sm:px-4 font-semibold text-gray-700 text-sm sm:text-base hidden md:table-cell">
+                  Total Contributions</th>
+                <th class="text-right py-3 px-2 sm:px-4 font-semibold text-gray-700 text-sm sm:text-base">Interest
+                  Earned</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of result().monthlyBreakdown; track item.month) {
+              <tr class="border-b border-gray-100 hover:bg-gray-50">
+                <td class="py-2 sm:py-3 px-2 sm:px-4 text-sm sm:text-base">{{ item.month }}</td>
+                <td class="py-2 sm:py-3 px-2 sm:px-4 text-right font-medium text-sm sm:text-base break-all">{{
+                  item.balance | currency: 'INR':'symbol':'1.0-0' }}</td>
+                <td class="py-2 sm:py-3 px-2 sm:px-4 text-right text-sm sm:text-base break-all hidden md:table-cell">{{
+                  item.totalContributions | currency: 'INR':'symbol':'1.0-0' }}</td>
+                <td class="py-2 sm:py-3 px-2 sm:px-4 text-right text-green-600 text-sm sm:text-base break-all">{{
+                  item.interestEarned | currency: 'INR':'symbol':'1.0-0' }}</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
     }
+
+  </div>
 </div>
