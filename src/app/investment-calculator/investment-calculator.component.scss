@@ -1,260 +1,81 @@
-// Input styling
-.input-group {
-  @apply mb-4 sm:mb-6;
-}
-
-.input-label {
-  @apply block text-sm font-semibold text-gray-700 mb-2;
-}
-
-.input-field {
-  @apply w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-900 placeholder-gray-500
-         focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200
-         bg-white shadow-sm hover:shadow-md;
-}
-
-// Animation for number changes
+// Essential custom styles only
 .number-animation {
   transition: all 0.3s ease-in-out;
 }
 
-// Custom gradient background
 .gradient-bg {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-// Card hover effects
-.hover-card {
-  @apply transform transition-all duration-300 hover:scale-105 hover:shadow-xl;
-}
-
-// Progress bar styling
 .progress-bar {
-  @apply relative overflow-hidden rounded-full bg-gray-200;
+  position: relative;
+  overflow: hidden;
+  border-radius: 9999px;
+  background-color: #e5e7eb;
 
   &::after {
     content: '';
-    @apply absolute top-0 left-0 h-full bg-gradient-to-r from-blue-400 to-blue-600;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(to right, #60a5fa, #2563eb);
     transition: width 0.5s ease-in-out;
   }
 }
 
-// Tab styling
 .tab-button {
-  @apply px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all duration-200 relative overflow-hidden text-xs sm:text-sm;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s;
 
-  &.active {
-    @apply bg-blue-500 text-white shadow-lg;
-
-    &::before {
-      content: '';
-      @apply absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-90;
-    }
-  }
-
-  &:not(.active) {
-    @apply text-gray-600 hover:text-blue-500 hover:bg-blue-50;
+  &.active::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, #60a5fa, #2563eb);
+    opacity: 0.9;
   }
 }
 
-// Result card styling
 .result-card {
-  @apply bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-4 sm:p-6;
   background-image: radial-gradient(circle at 1px 1px, rgba(34, 197, 94, 0.1) 1px, transparent 0);
   background-size: 20px 20px;
 }
 
-// Scenario card styling
-.scenario-card {
-  @apply border border-gray-200 rounded-xl p-4 sm:p-6 cursor-pointer transition-all duration-300;
-  @apply hover:shadow-lg hover:border-blue-300 hover:bg-blue-50/30;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
+.scenario-card:hover {
+  transform: translateY(-2px);
 }
 
-// Table styling
-.breakdown-table {
-  th {
-    @apply text-left py-3 sm:py-4 px-2 sm:px-4 font-semibold text-gray-700 bg-gray-50 text-sm sm:text-base;
-  }
-
-  td {
-    @apply py-2 sm:py-3 px-2 sm:px-4 border-b border-gray-100 text-sm sm:text-base;
-  }
-
-  tr:hover {
-    @apply bg-blue-50/50;
-  }
-}
-
-// Enhanced Mobile responsiveness
+// Mobile optimizations
 @media (max-width: 640px) {
-  .container {
-    @apply px-3;
-  }
-
-  .grid {
-    @apply grid-cols-1;
-  }
-
-  // Smaller text sizes for mobile
-  h1 {
-    @apply text-3xl;
-  }
-
-  h2 {
-    @apply text-xl;
-  }
-
-  // Button adjustments for mobile
-  button {
-    @apply text-xs px-3 py-2;
-  }
-
-  // Input field adjustments
-  input, select {
-    @apply text-sm py-2;
-  }
-
-  // Card padding adjustments
-  .card {
-    @apply p-4;
+  button, .tab-button, input, select {
+    min-height: 44px;
   }
 }
 
-@media (min-width: 641px) and (max-width: 768px) {
-  .container {
-    @apply px-4;
-  }
-
-  // Tablet specific adjustments
-  .grid-cols-3 {
-    @apply grid-cols-2;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  // Tablet landscape adjustments
-  .text-5xl {
-    @apply text-4xl;
-  }
-}
-
-@media (min-width: 1025px) {
-  // Desktop specific styles
-  .hover-effects {
-    @apply hover:scale-105;
-  }
-}
-
-// Loading animation
+// Animations
 @keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 .loading {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-// Touch-friendly adjustments
-@media (hover: none) and (pointer: coarse) {
-  // Mobile touch devices
-  button {
-    @apply py-3 px-4 text-base;
-    min-height: 44px; // Minimum touch target size
-  }
-
-  .tab-button {
-    @apply py-3 px-4;
-    min-height: 44px;
-  }
-
-  input, select {
-    @apply py-3;
-    min-height: 44px;
-  }
-}
-
-// High DPI displays
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .shadow-xl {
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  }
-}
-
-// Dark mode support (if needed)
-@media (prefers-color-scheme: dark) {
-  .dark-mode {
-    @apply bg-gray-900 text-white;
-
-    .bg-white {
-      @apply bg-gray-800;
-    }
-
-    .text-gray-800 {
-      @apply text-gray-100;
-    }
-
-    .text-gray-600 {
-      @apply text-gray-300;
-    }
-  }
-}
-
-// Smooth transitions for all interactive elements
-* {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
 // Focus styles for accessibility
-button:focus,
-input:focus,
-select:focus {
-  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+button:focus, input:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3b82f6, 0 0 0 4px rgba(59, 130, 246, 0.1);
 }
 
 // Print styles
 @media print {
-  .no-print {
-    display: none !important;
-  }
-
-  .print-break {
-    page-break-before: always;
-  }
-
+  .no-print { display: none !important; }
+  .print-break { page-break-before: always; }
   body {
     -webkit-print-color-adjust: exact;
-    color-adjust: exact;
+    print-color-adjust: exact;
   }
-}
-
-// Loading animation
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-.loading {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-// Smooth transitions for all interactive elements
-* {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
 }

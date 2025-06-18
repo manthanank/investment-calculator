@@ -63,46 +63,39 @@
         </div>
 
         <!-- Input Fields -->
-        <div class="space-y-4 sm:space-y-6">
-          <div class="input-group">
-            <label class="input-label">Initial Investment</label>            <div class="relative">
+        <div class="space-y-4 sm:space-y-6">          <div class="mb-4 sm:mb-6">
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Initial Investment</label><div class="relative">
               <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">₹</span>
-              <input type="number" [(ngModel)]="initialInvestment" name="initialInvestment" class="input-field !pl-6 pr-3 sm:pr-4"
+              <input type="number" [(ngModel)]="initialInvestment" name="initialInvestment" class="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-white shadow-sm hover:shadow-md !pl-6 pr-3 sm:pr-4"
                 placeholder="10,000">
             </div>
           </div>
 
-          @if (calculationType() !== 'simple') {
-          <div class="input-group">
-            <label class="input-label">Monthly Contribution</label>            <div class="relative">
+          @if (calculationType() !== 'simple') {          <div class="mb-4 sm:mb-6">
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Monthly Contribution</label><div class="relative">
               <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">₹</span>
-              <input type="number" [(ngModel)]="monthlyContribution" name="monthlyContribution" class="input-field !pl-6 pr-3 sm:pr-4"
+              <input type="number" [(ngModel)]="monthlyContribution" name="monthlyContribution" class="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-white shadow-sm hover:shadow-md !pl-6 pr-3 sm:pr-4"
                 placeholder="1,000">
             </div>
           </div>
-          }
-
-          <div class="input-group">
-            <label class="input-label">Annual Interest Rate</label>
+          }          <div class="mb-4 sm:mb-6">
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Annual Interest Rate</label>
             <div class="relative">
-              <input type="number" [(ngModel)]="annualRate" name="annualRate" class="input-field pr-8" step="0.1"
+              <input type="number" [(ngModel)]="annualRate" name="annualRate" class="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-white shadow-sm hover:shadow-md pr-8" step="0.1"
                 placeholder="8.0">
               <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">%</span>
             </div>
-          </div>
-
-          <div class="input-group">
-            <label class="input-label">Investment Period</label>
+          </div>          <div class="mb-4 sm:mb-6">
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Investment Period</label>
             <div class="relative">
-              <input type="number" [(ngModel)]="years" name="years" class="input-field pr-16" placeholder="10">
+              <input type="number" [(ngModel)]="years" name="years" class="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-white shadow-sm hover:shadow-md pr-16" placeholder="10">
               <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">years</span>
             </div>
           </div>
 
-          @if (calculationType() === 'compound') {
-          <div class="input-group">
-            <label class="input-label">Compounding Frequency</label>
-            <select [(ngModel)]="compoundingFrequency" name="compoundingFrequency" class="input-field">
+          @if (calculationType() === 'compound') {          <div class="mb-4 sm:mb-6">
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Compounding Frequency</label>
+            <select [(ngModel)]="compoundingFrequency" name="compoundingFrequency" class="w-full border border-gray-300 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-white shadow-sm hover:shadow-md">
               <option value="1">Annually</option>
               <option value="2">Semi-annually</option>
               <option value="4">Quarterly</option>
